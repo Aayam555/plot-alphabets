@@ -215,3 +215,39 @@ function A(previous){
 
       return {x: U22.x, y: 0}
     }
+
+    function C(previous){
+      let centerX = previous.x + space + width;
+      calculator.setExpression({ latex: `(x - ${centerX}) = - \\sqrt{${width}^2 - (y - ${1/2 * height})^2}`, color:color });
+      return {x: centerX, y: 0};
+    }
+
+    function D(previous){
+      let D11 = {
+        x: previous.x + space,
+        y: previous.y
+      };
+
+      let D12 ={
+        x: D11.x,
+        y: D11.y + height
+      };
+
+      calculator.setExpression({ latex: `\\operatorname{polygon}(${convertIntoCartesianCoordinate(D11)}, ${convertIntoCartesianCoordinate(D12)})`, color:color });
+      calculator.setExpression({ latex: `(x - ${D11.x}) = \\sqrt{${width}^2 - (y - ${1/2 * height})^2}`, color:color });
+    }
+
+    function E(){
+      let E1 = {
+        x: previous.x + space,
+        y: previous.y
+      };
+
+      let E2 = {
+        x: E1.x,
+        y: E1.y
+      }
+    }
+
+
+D(C(B(A({x:0, y:0}))));
